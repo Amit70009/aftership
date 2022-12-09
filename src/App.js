@@ -25,10 +25,10 @@ function App () {
         },
         responseType: "blob"
       }).then((newres) => {
-        console.log(newres);
+      
         FileDownload(newres.data, `${tag}_Report.csv`)})
   }
-console.log(fetchData);
+
   return (
     <main>
       <h1 className="header">AfterShip account tracking number Download Tool</h1>
