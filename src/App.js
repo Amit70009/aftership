@@ -23,10 +23,11 @@ function App () {
           "Content-Type": "application/json",
           "aftership-api-key": `${apikey}`
         },
-        responseType: "blob"
+       /*  responseType: "blob" */
       }).then((newres) => {
-        FileDownload(newres.data, `${tag}_Report.csv`)})
+         FileDownload(parse(newres.data.data.trackings), `${tag}_Report.csv`) })
   }
+
 
   return (
     <main>
