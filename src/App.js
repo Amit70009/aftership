@@ -15,19 +15,7 @@ function App () {
   const [mincreate, setmincreate] = useState("");
   const [maxcreate, setmaxcreate] = useState("");
 
- /*  function subtracthours(date, hours) {
-    date.setHours(date.getHours() - hours);
-    return date;
-  } */
-/* const date = moment().format().slice(0, 19)
-
-const Maxcreate = date;
-const Mincreate = date; */
-
-/* console.log(date); */
-
-
-
+ 
 
   const fetchData = async (e) => {
       const newres = await axios.get(`https://api.aftership.com/v4/trackings/?tag=${tag}&created_at_min=${mincreate}&created_at_max=${maxcreate}`, {
@@ -38,13 +26,13 @@ const Mincreate = date; */
         responseType: "blob"
       }).then((newres) => {
         console.log(newres);
-        FileDownload(newres.data, "ExceptionReport.csv")})
+        FileDownload(newres.data, `${tag}_Report.csv`)})
   }
-
+console.log(fetchData);
   return (
     <main>
-      <h1 className="header">Please click here to download the file</h1>
-      <div>
+      <h1 className="header">AfterShip account tracking number Download Tool</h1>
+      <div className="left">
       <label> Please enter your API key </label>
       <Box
                 sx={{
@@ -52,13 +40,13 @@ const Mincreate = date; */
                    
                 }}
                 >
-            <div className="main"><TextField  fullWidth label="API KEY" id="fullWidth" onChange={(event) => setapikey(event.target.value)} /></div>
+            <div className="main"><TextField required fullWidth label="API KEY" id="fullWidth" onChange={(event) => setapikey(event.target.value)} /></div>
             <label>Please enter the status</label>
-            <div className="main"><TextField fullWidth label="Status" type={"text"} id="fullWidth" onChange={(event) => settag(event.target.value)} /> </div>
+            <div className="main"><TextField required fullWidth label="Status" type={"text"} id="fullWidth" onChange={(event) => settag(event.target.value)} /> </div>
             <label className="main">Please enter the Min create date</label>
-            <div className="main"><TextField className="main" fullWidth type={"date"} id="fullWidth" onChange={(event) => setmincreate(event.target.value)} /></div>
+            <div className="main"><TextField required className="main" fullWidth type={"date"} id="fullWidth" onChange={(event) => setmincreate(event.target.value)} /></div>
             <label className="main">Please enter the Max create date</label>
-            <div className="main"><TextField className="main" fullWidth type={"date"} id="fullWidth" onChange={(event) => setmaxcreate(event.target.value)} /></div>
+            <div className="main"><TextField required className="main" fullWidth type={"date"} id="fullWidth" onChange={(event) => setmaxcreate(event.target.value)} /></div>
             </Box>
     <button className="button" onClick={fetchData}> Download file </button>
     </div>
