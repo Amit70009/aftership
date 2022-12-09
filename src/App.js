@@ -25,7 +25,6 @@ function App () {
         },
         responseType: "blob"
       }).then((newres) => {
-      
         FileDownload(newres.data, `${tag}_Report.csv`)})
   }
 
